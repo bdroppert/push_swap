@@ -6,7 +6,7 @@
 /*   By: bdropper <bdropper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 19:26:14 by bdropper          #+#    #+#             */
-/*   Updated: 2026/01/23 23:25:05 by bdropper         ###   ########.fr       */
+/*   Updated: 2026/01/24 05:17:44 by bdropper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	init_lists(t_node **stack_a, int argc, char **argv)
 	}
 	curr->next = NULL;
 }
+dfgd
 
 // returns the index of the given node
 // the given node has to be from the given stack
