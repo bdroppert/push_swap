@@ -6,7 +6,7 @@
 /*   By: bdropper <bdropper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 19:26:14 by bdropper          #+#    #+#             */
-/*   Updated: 2026/01/23 23:33:51 by bdropper         ###   ########.fr       */
+/*   Updated: 2026/01/24 08:04:42 by bdropper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int number_check(char *str)
     }
     return (1);
 }
-
+/*in this function check will go one step ahead of curr to compare if the first node is equal to any of the
+rest of the stack and if this isnt the case it will move the curr forwards and repeat this process*/
 int no_duplicates(t_node *stack)
 {
     t_node  *curr;

@@ -6,7 +6,7 @@
 /*   By: bdropper <bdropper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 19:26:14 by bdropper          #+#    #+#             */
-/*   Updated: 2026/01/24 05:17:44 by bdropper         ###   ########.fr       */
+/*   Updated: 2026/01/24 10:33:31 by bdropper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	head_a = NULL;
 	head_b = NULL;
 	/*we set to null to make sure there is no garbage memory therefor the stacks are now empty*/
-	init_lists(&head_a, argc, argv);
+	create_stack_a(&head_a, argc, argv);
 	if (!error_check(argc, argv, head_a))
 		return (1);
 	while (head_a != NULL)
@@ -34,8 +34,6 @@ int	main(int argc, char **argv)
 		printf("%d\n", head_a->value);
 		head_a = head_a->next;
 	}
-	// sort
-	// free
 	return (0);
 }
 
@@ -51,7 +49,7 @@ t_node	*create_node(char *str)
 	return (new_node);
 }
 
-void	init_lists(t_node **stack_a, int argc, char **argv)
+void	create_stack_a(t_node **stack_a, int argc, char **argv)
 {
 	int	i;
 	t_node *curr;
@@ -75,23 +73,47 @@ void	init_lists(t_node **stack_a, int argc, char **argv)
 	}
 	curr->next = NULL;
 }
-dfgd
+
+//we check if it is already sorted to not run the other functions while we already have what we desire
+int	sorted_stack(t_node *stack)
+{
+	if(!stack)
+		return(1);
+
+	while(stack->next)
+	{
+		if(stack->value > stack->next->value)//is the current value bigger than the next value
+			return(0);
+		stack = stack->next;//move to the next node
+	}
+	return(1);
+}
 
 // returns the index of the given node
 // the given node has to be from the given stack
-// if you do not understand what it does
-// then fuck your chungus life i guess ¯\_(ツ)_/¯
-// size_t	node_index(t_stacks *stack, t_node *node)
-// {
-// 	size_t	i;
-// 	t_node	*iter;
+size_t	node_index(t_node *stack, t_node *node)
+{
+	size_t	i;
+	t_node	*iter;
 
-// 	i = 0;
-// 	iter = stack;
-// 	while (iter && iter != node)
-// 	{
-// 		i++;
-// 		iter = iter->next;
-// 	}
-// 	return (i);
-// }
+	i = 0;
+	iter = stack;
+	while (iter && iter != node)
+	{
+		i++;
+		iter = iter->next;
+	}
+	return (i);
+}
+
+int	free_stack(t_node *stack)
+{
+	t_node *tmp;
+
+	while(stack)
+	{
+		tmp = stack->next;
+		free(stack);
+		stack = tmp;
+	}
+}
