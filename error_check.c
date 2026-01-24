@@ -6,7 +6,7 @@
 /*   By: bdropper <bdropper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 19:26:14 by bdropper          #+#    #+#             */
-/*   Updated: 2026/01/21 19:06:58 by bdropper         ###   ########.fr       */
+/*   Updated: 2026/01/23 23:33:51 by bdropper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,51 @@ int number_check(char *str)
     while (str[i])
     {
         if (!isdigit(str[i]))
-        {
-            printf("(%s) This string has a character in it..", str);
             return (0);
-        }
         i++;
     }
     return (1);
 }
 
-int     error_check(int argc, char **argv)
+int no_duplicates(t_node *stack)
+{
+    t_node  *curr;
+    t_node  *check; //will go ahead in the node to check against curr
+
+    curr = stack;
+    while(curr)
+    {
+        check = curr->next;
+        while(check)
+        {
+            if (curr->value == check->value)
+                return(1);
+            check = check->next;
+        }
+        curr = curr->next;
+    }
+    return(0);
+}
+
+
+int     error_check(int argc, char *argv[], t_node *stack)
 {
     int i = 1;
     while (i < argc)
     {
         if (!number_check(argv[i]))
     	{	
-        return (0);
+            printf("error\n");
+            return(0);
         }
-		printf("%s\n", argv[i]);
+        if (no_duplicates(stack))
+    	{	
+            printf("error\n");
+            return(0);
+        }
 		i++;
     }
     return (1);
 }
+
+
