@@ -6,7 +6,7 @@
 /*   By: bdropper <bdropper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 19:26:14 by bdropper          #+#    #+#             */
-/*   Updated: 2026/01/24 10:33:31 by bdropper         ###   ########.fr       */
+/*   Updated: 2026/01/27 06:24:26 by bdropper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,13 @@ t_node	*create_node(char *str)
 
 void	create_stack_a(t_node **stack_a, int argc, char **argv)
 {
-	int	i;
-	t_node *curr;
+	int		i;
+	t_node	*curr;
 
 	i = 1;
-
 	*stack_a = create_node(argv[i++]);
 	if (!*stack_a)
 		return ;
-	
 	curr = *stack_a;
 	while (i < argc)
 	{
@@ -74,19 +72,18 @@ void	create_stack_a(t_node **stack_a, int argc, char **argv)
 	curr->next = NULL;
 }
 
-//we check if it is already sorted to not run the other functions while we already have what we desire
+// we check if it is already sorted to not run the other functions while we already have what we desire
 int	sorted_stack(t_node *stack)
 {
-	if(!stack)
-		return(1);
-
-	while(stack->next)
+	if (!stack)
+		return (1);
+	while (stack->next)
 	{
-		if(stack->value > stack->next->value)//is the current value bigger than the next value
-			return(0);
-		stack = stack->next;//move to the next node
+		if (stack->value > stack->next->value)// is the current value bigger than the next value
+			return (0);
+		stack = stack->next; // move to the next node
 	}
-	return(1);
+	return (1);
 }
 
 // returns the index of the given node
@@ -108,9 +105,9 @@ size_t	node_index(t_node *stack, t_node *node)
 
 int	free_stack(t_node *stack)
 {
-	t_node *tmp;
+	t_node	*tmp;
 
-	while(stack)
+	while (stack)
 	{
 		tmp = stack->next;
 		free(stack);
