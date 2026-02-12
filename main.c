@@ -6,36 +6,13 @@
 /*   By: bdropper <bdropper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 19:26:14 by bdropper          #+#    #+#             */
-/*   Updated: 2026/01/27 06:24:26 by bdropper         ###   ########.fr       */
+/*   Updated: 2026/02/12 20:33:42 by bdropper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
 #include <unistd.h>
-
-#define NO 1
-#define ALL_GOOD 0
-
-int	main(int argc, char **argv)
-{
-	t_node	*head_a;
-	t_node	*head_b;
-
-	/*these are not stacks themselves they are pointers tothe first node of two linked lists*/
-	head_a = NULL;
-	head_b = NULL;
-	/*we set to null to make sure there is no garbage memory therefor the stacks are now empty*/
-	create_stack_a(&head_a, argc, argv);
-	if (!error_check(argc, argv, head_a))
-		return (1);
-	while (head_a != NULL)
-	{
-		printf("%d\n", head_a->value);
-		head_a = head_a->next;
-	}
-	return (0);
-}
 
 t_node	*create_node(char *str)
 {
@@ -45,6 +22,7 @@ t_node	*create_node(char *str)
 	if (!new_node)
 		return (NULL);
 	new_node->value = atoi(str);
+	new_node->index = -1;
 	new_node->next = NULL;
 	return (new_node);
 }
@@ -79,31 +57,15 @@ int	sorted_stack(t_node *stack)
 		return (1);
 	while (stack->next)
 	{
-		if (stack->value > stack->next->value)// is the current value bigger than the next value
+		if (stack->value > stack->next->value)
+			// is the current value bigger than the next value
 			return (0);
 		stack = stack->next; // move to the next node
 	}
 	return (1);
 }
 
-// returns the index of the given node
-// the given node has to be from the given stack
-size_t	node_index(t_node *stack, t_node *node)
-{
-	size_t	i;
-	t_node	*iter;
-
-	i = 0;
-	iter = stack;
-	while (iter && iter != node)
-	{
-		i++;
-		iter = iter->next;
-	}
-	return (i);
-}
-
-int	free_stack(t_node *stack)
+void	free_stack(t_node *stack)
 {
 	t_node	*tmp;
 
@@ -114,3 +76,50 @@ int	free_stack(t_node *stack)
 		stack = tmp;
 	}
 }
+
+int	main(int argc, char **argv)
+{
+	t_node	*stack_a;
+	t_node	*stack_b;
+
+	/*these are not stacks themselves they are pointers tothe first node of two linked lists*/
+	stack_a = NULL;
+	stack_b = NULL;
+	/*we set to null to make sure there is no garbage memory therefor the stacks are now empty*/
+	if (argc < 2)
+		return (0);
+	if (!error_check(argc, argv, stack_a))
+		return (1);
+	create_stack_a(&stack_a, argc, argv);
+	if (!sorted_stack(stack_a))
+	{
+		if(stack_size == 2)
+			sa(stack_a);
+		else if(stack_size == 3)
+				
+			assign_index(stack_a);
+			radix_sort(&stack_a, &stack_b);
+	}
+	
+	// print_stack(stack_a);
+	return (0);
+}
+
+// void	print_stack(t_node *stack)
+// {
+// 	int i;
+
+// 	i = 0;
+// 	if (!stack)
+// 	{
+// 		printf("(empty stack)\n");
+// 		return ;
+// 	}
+// 	while (stack)
+// 	{
+// 		printf("[%d] value=%d index=%d\n", i, stack->value, stack->index);
+// 		stack = stack->next;
+// 		i++;
+// 	}
+// 	printf("----\n");
+// }

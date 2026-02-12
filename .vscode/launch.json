@@ -9,12 +9,13 @@
 		"type": "cppdbg",
 		"request": "launch",
 		"program": "${workspaceFolder}/push_swap",
-		"args": [],
+		"args": ["1 2 3"],
 		"stopAtEntry": false,
 		"cwd": "${fileDirname}",
 		"environment": [],
 		"externalConsole": false,
 		"MIMode": "gdb",
+		"preLaunchTask": "C/C++: build active file",
 		"setupCommands": [
 			{
 				"description": "Enable pretty-printing for gdb",

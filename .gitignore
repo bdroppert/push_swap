@@ -1,4 +1,2 @@
 *.o
-libft/*.o
-printf/*.o
 a.out
