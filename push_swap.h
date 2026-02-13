@@ -6,7 +6,7 @@
 /*   By: bdropper <bdropper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 15:05:46 by bdropper          #+#    #+#             */
-/*   Updated: 2026/02/12 17:40:44 by bdropper         ###   ########.fr       */
+/*   Updated: 2026/02/13 17:03:43 by bdropper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ void				radix_sort(t_node **a, t_node **b);
 int					stack_size(t_node *stack);
 int					get_max_bits(t_node *stack);
 void				assign_index(t_node *stack);
+void	sort_stack(t_node **stack_a, t_node **stack_b);
 
+
+void	sort_three(t_node **stack);
+void	sort_five(t_node **stack_a, t_node **stack_b, int stack_size);
 void	print_stack(t_node *stack);
 #endif

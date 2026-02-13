@@ -6,7 +6,7 @@
 /*   By: bdropper <bdropper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 19:26:14 by bdropper          #+#    #+#             */
-/*   Updated: 2026/02/12 20:33:42 by bdropper         ###   ########.fr       */
+/*   Updated: 2026/02/13 20:00:02 by bdropper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,35 +91,31 @@ int	main(int argc, char **argv)
 	if (!error_check(argc, argv, stack_a))
 		return (1);
 	create_stack_a(&stack_a, argc, argv);
-	if (!sorted_stack(stack_a))
-	{
-		if(stack_size == 2)
-			sa(stack_a);
-		else if(stack_size == 3)
-				
-			assign_index(stack_a);
-			radix_sort(&stack_a, &stack_b);
-	}
+	if (sorted_stack(stack_a))
+		return(free_stack(stack_a), 0);
 	
-	// print_stack(stack_a);
+	sort_stack(&stack_a, &stack_b);
+	print_stack(stack_a);
+
+	free_stack(stack_a);
 	return (0);
 }
 
-// void	print_stack(t_node *stack)
-// {
-// 	int i;
+void	print_stack(t_node *stack)
+{
+	int i;
 
-// 	i = 0;
-// 	if (!stack)
-// 	{
-// 		printf("(empty stack)\n");
-// 		return ;
-// 	}
-// 	while (stack)
-// 	{
-// 		printf("[%d] value=%d index=%d\n", i, stack->value, stack->index);
-// 		stack = stack->next;
-// 		i++;
-// 	}
-// 	printf("----\n");
-// }
+	i = 0;
+	if (!stack)
+	{
+		printf("(empty stack)\n");
+		return ;
+	}
+	while (stack)
+	{
+		printf("[%d] value=%d index=%d\n", i, stack->value, stack->index);
+		stack = stack->next;
+		i++;
+	}
+	printf("----\n");
+}
