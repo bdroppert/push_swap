@@ -6,18 +6,18 @@
 /*   By: bdropper <bdropper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 15:05:46 by bdropper          #+#    #+#             */
-/*   Updated: 2026/02/13 17:03:43 by bdropper         ###   ########.fr       */
+/*   Updated: 2026/02/17 16:13:58 by bdropper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-# define PUSH_SWAP
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-# include <unistd.h>
 # include <ctype.h>
+# include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>
-
+# include <unistd.h>
 
 typedef struct s_node
 {
@@ -57,10 +57,12 @@ void				radix_sort(t_node **a, t_node **b);
 int					stack_size(t_node *stack);
 int					get_max_bits(t_node *stack);
 void				assign_index(t_node *stack);
-void	sort_stack(t_node **stack_a, t_node **stack_b);
+void				sort_stack(t_node **stack_a, t_node **stack_b);
 
+void				sort_three(t_node **stack);
+void				sort_five(t_node **a, t_node **b);
+int					find_smallest_pos(t_node *stack);
+void				print_stack(t_node *stack);
+static int			is_overflow(char *str);
 
-void	sort_three(t_node **stack);
-void	sort_five(t_node **stack_a, t_node **stack_b, int stack_size);
-void	print_stack(t_node *stack);
 #endif

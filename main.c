@@ -6,7 +6,7 @@
 /*   By: bdropper <bdropper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 19:26:14 by bdropper          #+#    #+#             */
-/*   Updated: 2026/02/13 20:00:02 by bdropper         ###   ########.fr       */
+/*   Updated: 2026/02/17 14:24:09 by bdropper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,6 @@ void	create_stack_a(t_node **stack_a, int argc, char **argv)
 	curr->next = NULL;
 }
 
-// we check if it is already sorted to not run the other functions while we already have what we desire
-int	sorted_stack(t_node *stack)
-{
-	if (!stack)
-		return (1);
-	while (stack->next)
-	{
-		if (stack->value > stack->next->value)
-			// is the current value bigger than the next value
-			return (0);
-		stack = stack->next; // move to the next node
-	}
-	return (1);
-}
-
 void	free_stack(t_node *stack)
 {
 	t_node	*tmp;
@@ -88,9 +73,9 @@ int	main(int argc, char **argv)
 	/*we set to null to make sure there is no garbage memory therefor the stacks are now empty*/
 	if (argc < 2)
 		return (0);
+	create_stack_a(&stack_a, argc, argv);
 	if (!error_check(argc, argv, stack_a))
 		return (1);
-	create_stack_a(&stack_a, argc, argv);
 	if (sorted_stack(stack_a))
 		return(free_stack(stack_a), 0);
 	

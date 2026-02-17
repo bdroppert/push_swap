@@ -6,7 +6,7 @@
 /*   By: bdropper <bdropper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 18:31:06 by bdropper          #+#    #+#             */
-/*   Updated: 2026/02/12 16:21:58 by bdropper         ###   ########.fr       */
+/*   Updated: 2026/02/16 15:37:48 by bdropper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,11 @@ int	get_max_bits(t_node *stack)
 
 void	assign_index(t_node *stack)
 {
-	t_node *a;
-	t_node *b;
-	int index;
+	t_node	*a;
+	t_node	*b;
+	int	index;
 	a = stack;
+
 	while (a)
 	{
 		index = 0;

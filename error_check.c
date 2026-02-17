@@ -6,17 +6,42 @@
 /*   By: bdropper <bdropper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 19:26:14 by bdropper          #+#    #+#             */
-/*   Updated: 2026/02/12 13:28:14 by bdropper         ###   ########.fr       */
+/*   Updated: 2026/02/17 14:53:30 by bdropper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+static int	is_overflow(char *str)
+{
+	long	n;
+	int		sign;
+	int		i;
+
+	i = 0;
+	sign = 1;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	n = 0;
+	while (str[i])
+	{
+		n = n * 10 + (str[i] - '0');
+		if (n * sign > 2147483647 || n * sign < -2147483648)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	number_check(char *str)
 {
 	int	i;
 
-	if (!str)
+	if (!str || !*str)
 		return (0);
 	i = 0;
 	if (str[i] == '+' || str[i] == '-')
@@ -29,15 +54,15 @@ int	number_check(char *str)
 			return (0);
 		i++;
 	}
-	return (1);
+	return (!is_overflow(str));
 }
 /*in this function check will go one step ahead of curr to compare if the first node is equal to any of the
 rest of the stack and if this isnt the case it will move the curr forwards and repeat this process*/
 int	no_duplicates(t_node *stack)
 {
 	t_node	*curr;
-
 	t_node *check; // will go ahead in the node to check against curr
+	
 	curr = stack;
 	while (curr)
 	{
@@ -65,12 +90,12 @@ int	error_check(int argc, char *argv[], t_node *stack)
 			write(1, "error\n", 6);
 			return (0);
 		}
-		if (no_duplicates(stack))
-		{
-			write(1, "error\n", 6);
-			return (0);
-		}
 		i++;
+	}
+	if (no_duplicates(stack))
+	{
+		write(1, "error\n", 6);
+		return (0);
 	}
 	return (1);
 }
