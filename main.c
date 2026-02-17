@@ -6,7 +6,7 @@
 /*   By: bdropper <bdropper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 19:26:14 by bdropper          #+#    #+#             */
-/*   Updated: 2026/02/17 14:24:09 by bdropper         ###   ########.fr       */
+/*   Updated: 2026/02/17 19:03:45 by bdropper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ void	create_stack_a(t_node **stack_a, int argc, char **argv)
 		curr->next = create_node(argv[i]);
 		if (!curr->next)
 			return ;
-		// create next node
 		curr = curr->next;
-		// set next pointer to next node
 		i++;
 	}
 	curr->next = NULL;
@@ -67,40 +65,16 @@ int	main(int argc, char **argv)
 	t_node	*stack_a;
 	t_node	*stack_b;
 
-	/*these are not stacks themselves they are pointers tothe first node of two linked lists*/
 	stack_a = NULL;
 	stack_b = NULL;
-	/*we set to null to make sure there is no garbage memory therefor the stacks are now empty*/
 	if (argc < 2)
 		return (0);
 	create_stack_a(&stack_a, argc, argv);
 	if (!error_check(argc, argv, stack_a))
 		return (1);
 	if (sorted_stack(stack_a))
-		return(free_stack(stack_a), 0);
-	
+		return (free_stack(stack_a), 0);
 	sort_stack(&stack_a, &stack_b);
-	print_stack(stack_a);
-
 	free_stack(stack_a);
 	return (0);
-}
-
-void	print_stack(t_node *stack)
-{
-	int i;
-
-	i = 0;
-	if (!stack)
-	{
-		printf("(empty stack)\n");
-		return ;
-	}
-	while (stack)
-	{
-		printf("[%d] value=%d index=%d\n", i, stack->value, stack->index);
-		stack = stack->next;
-		i++;
-	}
-	printf("----\n");
 }

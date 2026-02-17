@@ -6,7 +6,7 @@
 /*   By: bdropper <bdropper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 15:05:46 by bdropper          #+#    #+#             */
-/*   Updated: 2026/02/17 16:13:58 by bdropper         ###   ########.fr       */
+/*   Updated: 2026/02/17 19:11:10 by bdropper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void				sort_stack(t_node **stack_a, t_node **stack_b);
 void				sort_three(t_node **stack);
 void				sort_five(t_node **a, t_node **b);
 int					find_smallest_pos(t_node *stack);
-void				print_stack(t_node *stack);
 static int			is_overflow(char *str);
+static void			bring_to_top(t_node **a);
+int					ft_isdigit(int c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bdropper <bdropper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 19:26:14 by bdropper          #+#    #+#             */
-/*   Updated: 2026/02/17 14:53:30 by bdropper         ###   ########.fr       */
+/*   Updated: 2026/02/17 18:35:02 by bdropper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,14 @@ static int	is_overflow(char *str)
 	return (0);
 }
 
+int	ft_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	else
+		return (0);
+}
+
 int	number_check(char *str)
 {
 	int	i;
@@ -50,19 +58,18 @@ int	number_check(char *str)
 		return (0);
 	while (str[i])
 	{
-		if (!isdigit(str[i]))
+		if (!ft_isdigit(str[i]))
 			return (0);
 		i++;
 	}
 	return (!is_overflow(str));
 }
-/*in this function check will go one step ahead of curr to compare if the first node is equal to any of the
-rest of the stack and if this isnt the case it will move the curr forwards and repeat this process*/
+
 int	no_duplicates(t_node *stack)
 {
 	t_node	*curr;
-	t_node *check; // will go ahead in the node to check against curr
-	
+	t_node	*check;
+
 	curr = stack;
 	while (curr)
 	{

@@ -6,7 +6,7 @@
 /*   By: bdropper <bdropper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 20:43:48 by bdropper          #+#    #+#             */
-/*   Updated: 2026/02/17 17:19:48 by bdropper         ###   ########.fr       */
+/*   Updated: 2026/02/17 18:30:42 by bdropper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,11 @@ void	sort_three(t_node **stack)
 		sa(stack);
 }
 
-void	sort_five(t_node **a, t_node **b)
+static void	bring_to_top(t_node **a)
 {
 	int	pos;
 	int	size;
 
-	// push first smallest
 	pos = find_smallest_pos(*a);
 	size = stack_size(*a);
 	if (pos <= size / 2)
@@ -82,26 +81,17 @@ void	sort_five(t_node **a, t_node **b)
 		while (pos-- > 0)
 			rra(a);
 	}
+}
+
+void	sort_five(t_node **a, t_node **b)
+{
+	bring_to_top(a);
 	pb(a, b);
-	// push second smallest
-	pos = find_smallest_pos(*a);
-	size = stack_size(*a);
-	if (pos <= size / 2)
-		while (pos-- > 0)
-			ra(a);
-	else
-	{
-		pos = size - pos;
-		while (pos-- > 0)
-			rra(a);
-	}
+	bring_to_top(a);
 	pb(a, b);
-	// sort remaining 3
 	sort_three(a);
-	// restore
 	pa(a, b);
 	pa(a, b);
-	// final fix: compare by value, not index
 	if ((*a)->value > (*a)->next->value)
 		sa(a);
 }
@@ -126,19 +116,4 @@ int	find_smallest_pos(t_node *stack)
 		i++;
 	}
 	return (pos);
-}
-
-// we check if it is already sorted to not run the other functions while we already have what we desire
-int	sorted_stack(t_node *stack)
-{
-	if (!stack)
-		return (1);
-	while (stack->next)
-	{
-		if (stack->value > stack->next->value)
-			// is the current value bigger than the next value
-			return (0);
-		stack = stack->next; // move to the next node
-	}
-	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: bdropper <bdropper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 18:31:06 by bdropper          #+#    #+#             */
-/*   Updated: 2026/02/16 15:37:48 by bdropper         ###   ########.fr       */
+/*   Updated: 2026/02/17 18:33:35 by bdropper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ void	assign_index(t_node *stack)
 {
 	t_node	*a;
 	t_node	*b;
-	int	index;
-	a = stack;
+	int		index;
 
+	a = stack;
 	while (a)
 	{
 		index = 0;

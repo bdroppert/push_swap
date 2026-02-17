@@ -6,7 +6,7 @@
 /*   By: bdropper <bdropper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 23:04:29 by bdropper          #+#    #+#             */
-/*   Updated: 2026/02/16 16:26:39 by bdropper         ###   ########.fr       */
+/*   Updated: 2026/02/17 18:26:51 by bdropper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,15 @@ int	push(t_node **source, t_node **destenation)
 	return (1);
 }
 
-/*take the first node and move it to the end
- */
 int	rotate(t_node **stack)
 {
 	t_node	*first;
 	t_node	*last;
 
 	if (!stack || !*stack || !(*stack)->next)
-		// an empty stack or idevidual nodes dont return anything
 		return (0);
-	first = *stack; // save the first head
+	first = *stack;
 	*stack = first->next;
-	/*move the stack head (the 'first' head still remains the same)
-	visual [1] [2] [3] this is before ([1]) [2] [3] after 1 is still linked but no longer the headwh*/
 	last = *stack;
 	while (last->next)
 		last = last->next;
@@ -58,13 +53,12 @@ int	reverse_rotate(t_node **stack)
 	prev = NULL;
 	while (last->next)
 	{
-		prev = last;       // prev is now at the start of the stack
-		last = last->next; // last is now one spot ahead of prev
+		prev = last;
+		last = last->next;
 	}
-	prev->next = NULL;   // disconnect the end of the stack
-	last->next = *stack; // attach end to the front of the list
+	prev->next = NULL;
+	last->next = *stack;
 	*stack = last;
-	// now the stack officially starts with the original last number
 	return (1);
 }
 
@@ -80,5 +74,18 @@ int	swap(t_node **stack)
 	first->next = second->next;
 	second->next = first;
 	*stack = second;
+	return (1);
+}
+
+int	sorted_stack(t_node *stack)
+{
+	if (!stack)
+		return (1);
+	while (stack->next)
+	{
+		if (stack->value > stack->next->value)
+			return (0);
+		stack = stack->next;
+	}
 	return (1);
 }
